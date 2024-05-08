@@ -1,0 +1,74 @@
+version: '3.9'
+services:
+
+  #POSTGRES INVENTORY
+  db-inventory:
+    container_name: db-inventory
+    image: postgres:14.3
+    restart: always
+    environment:
+      POSTGRES_DB: ms_inventory
+      POSTGRES_USER: "jhompo"
+      POSTGRES_PASSWORD: "test123"
+    ports:
+      - "5432:5432"
+
+
+  #MYSQL ORDERS
+  db-orders:
+    container_name: db-orders
+    image: mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ms_orders
+      MYSQL_USER: jhompo
+      MYSQL_PASSWORD: test123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    expose:
+      - 3306
+
+
+  #POSTGRES PRODUCTS
+  db-products:
+    container_name: db-products
+    image: postgres:14.3
+    restart: always
+    environment:
+      POSTGRES_DB: ms_products
+      POSTGRES_USER: "jhompo"
+      POSTGRES_PASSWORD: "test123"
+    ports:
+      - "5431:5432"
+
+
+  #MONGO
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: jhompo
+      MONGO_INITDB_ROOT_PASSWORD: test123
+    ports:
+      - "27017:27017"
+    expose:
+      - 27017
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    ports:
+      - "3333:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin
+      PGADMIN_DEFAULT_PASSWORD: admin
+
