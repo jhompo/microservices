@@ -1,0 +1,2 @@
+ALTER TABLE product
+ADD CONSTRAINT uk_sku UNIQUE (sku);
