@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -20,8 +21,8 @@ public class ProductImpl implements ProductRepository {
     }
 
     @Override
-    public Product findById(long id) {
-        return  productRepositoryMysql.findById(id).orElseThrow();
+    public Optional<Product> findById(long id) {
+        return  productRepositoryMysql.findById(id);
     }
 
     @Override
