@@ -5,7 +5,7 @@ import lombok.*;
 import java.lang.*;
 
 @Entity
-@Table(name="product")
+@Table(name="product", uniqueConstraints = {@UniqueConstraint(columnNames = "sku")})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +15,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @Column(unique = true)
     String sku;
+
     String name;
     String description;
     long price;
