@@ -20,4 +20,9 @@ public class ProductServices {
     public Product getId(long id){
         return productRepository.findById(id);
     }
+
+    public Product create(Product product){
+        return productRepository.save(product);
+
+    }
 }

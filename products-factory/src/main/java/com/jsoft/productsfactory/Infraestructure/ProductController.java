@@ -5,10 +5,7 @@ import com.jsoft.productsfactory.Domain.models.Product;
 import lombok.*;
 import jakarta.persistence.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public Product AllProducts(@PathVariable Long id) {
         return productServices.getId(id);
+    }
+
+    @PostMapping()
+    public Product AddProduct(@RequestBody Product product) {
+        return productServices.create(product);
     }
 
 }

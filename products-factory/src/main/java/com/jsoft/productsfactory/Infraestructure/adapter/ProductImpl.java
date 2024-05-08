@@ -10,6 +10,7 @@ import java.util.List;
 
 @Component
 public class ProductImpl implements ProductRepository {
+
     @Autowired
     ProductRepositoryMysql productRepositoryMysql;
 
@@ -21,5 +22,10 @@ public class ProductImpl implements ProductRepository {
     @Override
     public Product findById(long id) {
         return  productRepositoryMysql.findById(id).orElseThrow();
+    }
+
+    @Override
+    public Product save(Product product) {
+        return productRepositoryMysql.save(product);
     }
 }
