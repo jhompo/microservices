@@ -56,19 +56,3 @@ services:
     expose:
       - 27017
 
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8080"
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4
-    ports:
-      - "3333:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin
-      PGADMIN_DEFAULT_PASSWORD: admin
-
