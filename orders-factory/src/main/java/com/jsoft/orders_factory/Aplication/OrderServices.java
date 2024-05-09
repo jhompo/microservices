@@ -27,7 +27,8 @@ public class OrderServices {
         // webflux con stock - WebClient programacion reactiva y flujo de datos asincronos
         DataResponse dataResponse = this.webClientBuilder.build()
                 .post()
-                .uri("http://localhost:8083/inventory/in-stock")
+                //.uri("http://localhost:8083/inventory/in-stock")
+                .uri("http://localhost:808/inventory/in-stock")//ApiGateway
                 .bodyValue(orderRequest.getOrderItems())
                 .retrieve()
                 .bodyToMono(DataResponse.class)//tipo de dato a recibir del servicio

@@ -12,11 +12,13 @@
 	<groupId>com.jsoft</groupId>
 	<artifactId>microservice</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
+
 	<name>microservice</name>
 	<description>Project Microservices</description>
 
 	<modules>
 		<module>api-gateway</module>
+		<module>discovery-server</module>
 		<module>inventory-factory</module>
 		<module>orders-factory</module>
 		<module>products-factory</module>
