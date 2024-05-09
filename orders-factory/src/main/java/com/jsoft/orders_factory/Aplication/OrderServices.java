@@ -1,11 +1,9 @@
 package com.jsoft.orders_factory.Aplication;
 
-import com.jsoft.orders_factory.Domain.dtos.OrderItemsRequest;
-import com.jsoft.orders_factory.Domain.dtos.OrderRequest;
+import com.jsoft.orders_factory.Domain.dtos.*;
 import com.jsoft.orders_factory.Domain.models.Order;
 import com.jsoft.orders_factory.Domain.models.OrderItems;
 import com.jsoft.orders_factory.Domain.repository.OrderRepository;
-import com.jsoft.orders_factory.Domain.dtos.DataResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -92,5 +90,21 @@ public class OrderServices {
 
     public List<Order> all() {
         return orderRepository.all();
+    }
+
+    public List<OrderResponse> getAllOrders() {
+        List<Order> orders = this.orderRepository.all();
+
+        return orders.stream().map(this::mapToOrderResponse).toList();
+
+    }
+
+    private OrderResponse mapToOrderResponse(Order order) {
+        return new OrderResponse(order.getId(), order.getOrderNumber()
+                , order.getOrderItem().stream().map(this::mapToOrderItemRequest).toList());
+    }
+
+    private OrderItemsResponse mapToOrderItemRequest(OrderItems orderItems) {
+        return new OrderItemsResponse(orderItems.getId(), orderItems.getSku(), orderItems.getPrice(), orderItems.getQuantity());
     }
 }

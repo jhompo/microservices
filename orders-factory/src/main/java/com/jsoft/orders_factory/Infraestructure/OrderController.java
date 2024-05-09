@@ -4,6 +4,7 @@ package com.jsoft.orders_factory.Infraestructure;
 import com.jsoft.orders_factory.Aplication.OrderServices;
 import com.jsoft.orders_factory.Domain.dtos.OrderItemsRequest;
 import com.jsoft.orders_factory.Domain.dtos.OrderRequest;
+import com.jsoft.orders_factory.Domain.dtos.OrderResponse;
 import com.jsoft.orders_factory.Domain.models.Order;
 import com.jsoft.orders_factory.Domain.models.OrderItems;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class OrderController {
 
 
     @GetMapping("")
-    public List<Order> AllOrder() {
-        return orderServices.all();
+    public List<OrderResponse> AllOrder() {
+        return orderServices.getAllOrders();
     }
 
     @GetMapping("/{id}")
