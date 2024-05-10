@@ -19,6 +19,7 @@ public class OrderServices {
 
 
     final OrderRepository orderRepository;
+
     final WebClient.Builder webClientBuilder;
 
 
@@ -28,7 +29,7 @@ public class OrderServices {
         DataResponse dataResponse = this.webClientBuilder.build()
                 .post()
                 //.uri("http://localhost:8083/inventory/in-stock")
-                //.uri("http://localhost:808/inventory/in-stock")//ApiGateway
+                //.uri("http://localhost:8080/inventory/in-stock")//ApiGateway
                 .uri("lb://inventory-factory/inventory/in-stock")//Eureka
                 .bodyValue(orderRequest.getOrderItems())
                 .retrieve()

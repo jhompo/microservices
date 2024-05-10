@@ -24,17 +24,19 @@ public class InventoryController {
         return inventoryServices.all();
     }
 
-    @GetMapping("/{sku}")
-    public boolean stock(@PathVariable String sku){
-       return inventoryServices.isInStock(sku);
-    }
 
+    @GetMapping("/{sku}")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean isInStock(@PathVariable("sku") String sku) {
+        return inventoryServices.isInStock(sku);
+    }
 
     @PostMapping("/in-stock")
     @ResponseStatus(HttpStatus.OK)
-    public DataResponse stock(@RequestBody List<OrderItemsRequest> orderItems){
+    public DataResponse areInStock(@RequestBody List<OrderItemsRequest> orderItems) {
         return inventoryServices.areInStock(orderItems);
     }
+
 
 
 }
