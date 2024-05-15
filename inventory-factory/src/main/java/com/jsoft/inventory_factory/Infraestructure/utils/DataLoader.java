@@ -2,6 +2,7 @@ package com.jsoft.inventory_factory.Infraestructure.utils;
 
 import com.jsoft.inventory_factory.Domain.models.Inventory;
 import com.jsoft.inventory_factory.Infraestructure.adapter.InventoryMysql;
+import com.jsoft.inventory_factory.Infraestructure.entities.InventoryDb;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
@@ -21,12 +22,12 @@ public class DataLoader implements CommandLineRunner {
         if(inventoryMysql.findAll().isEmpty()){
             inventoryMysql.saveAll(
                     List.of(
-                            Inventory.builder().sku("00001").quantity(10L).build(),
-                            Inventory.builder().sku("00002").quantity(20L).build(),
-                            Inventory.builder().sku("00003").quantity(30L).build(),
-                            Inventory.builder().sku("00004").quantity(0L).build(),
-                            Inventory.builder().sku("00005").quantity(50L).build(),
-                            Inventory.builder().sku("00006").quantity(0L).build()
+                            InventoryDb.builder().sku("00001").quantity(10L).build(),
+                            InventoryDb.builder().sku("00002").quantity(20L).build(),
+                            InventoryDb.builder().sku("00003").quantity(30L).build(),
+                            InventoryDb.builder().sku("00004").quantity(0L).build(),
+                            InventoryDb.builder().sku("00005").quantity(50L).build(),
+                            InventoryDb.builder().sku("00006").quantity(0L).build()
                     )
             );
         }

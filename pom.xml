@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>api-gateway</module>
+		<module>auth-services</module>
 		<module>discovery-server</module>
 		<module>inventory-factory</module>
 		<module>orders-factory</module>

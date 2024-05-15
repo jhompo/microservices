@@ -5,6 +5,7 @@ import com.jsoft.inventory_factory.Domain.dtos.OrderItemsRequest;
 import com.jsoft.inventory_factory.Domain.models.Inventory;
 import com.jsoft.inventory_factory.Domain.models.OrderItems;
 import com.jsoft.inventory_factory.Domain.repositories.InventoryRepository;
+import com.jsoft.inventory_factory.Infraestructure.entities.InventoryDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,7 +31,7 @@ public class InventoryImpl implements InventoryRepository {
         var errorList = new ArrayList<String>();
 
         List<String> skus = orderItems.stream().map(OrderItemsRequest::getSku).toList();
-        List<Inventory> inventoryList =  inventoryMysql.findBySkuIn(skus);
+        List<InventoryDb> inventoryList =  inventoryMysql.findBySkuIn(skus);
 
         orderItems.forEach(item->{
             var inventory = inventoryList.stream().filter(fil-> fil.getSku().equals(item.getSku())).findFirst();
@@ -46,6 +47,14 @@ public class InventoryImpl implements InventoryRepository {
 
     @Override
     public List<Inventory> all() {
-        return inventoryMysql.findAll();
+        List<InventoryDb> inventoryList = inventoryMysql.findAll();
+        return inventoryList.stream().map(this::mapperToInventory).toList();
+    }
+
+    public Inventory mapperToInventory(InventoryDb item){
+        return Inventory.builder().id(item.getId())
+                .sku(item.getSku())
+                .quantity(item.getQuantity())
+                .build();
     }
 }
